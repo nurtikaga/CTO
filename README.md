@@ -1,81 +1,69 @@
-СТО (Сервис Технического Обслуживания) - Backend приложение
+# СТО 
+(Сервис Технического Обслуживания) - Backend приложение
 Описание проекта
 Проект представляет собой REST API для управления заявками в сервисном техническом обслуживании. Основные возможности:
 
-Создание и управление заявками
+1. Создание и управление заявками
+2. Отслеживание истории изменения статусов
+3. Уведомление клиентов
+4. Интеграция с Kafka для обработки событий
 
-Отслеживание истории изменения статусов
 
-Уведомление клиентов
+Технологический стек:
+1. Java 21
+2. Spring Boot 3.4.2
+3. PostgreSQL
+4. Kafka
+5. Redis (кеширование)
+6. Docker
+7. Lombok
+8. MapStruct
 
-Интеграция с Kafka для обработки событий
-
-Технологический стек
-Java 21
-
-Spring Boot 3.4.2
-
-PostgreSQL
-
-Kafka (опционально)
-
-Redis (кеширование)
-
-Docker
-
-Lombok
-
-MapStruct
-
-Требования
-JDK 21+
-
-Maven 3.9+
-
-Docker 20.10+
-
-Docker Compose 2.20+
-
-Установка и запуск
+## Установка и запуск
 1. Сборка проекта
+```
 bash
 mvn clean package
+```
 2. Запуск через Docker Compose
+```
 bash
 docker-compose up --build
-3. Запуск без Docker
+```
+
+4. Запуск без Docker
+```
 bash
 mvn spring-boot:run
-Конфигурация
-Основные настройки в application.properties:
+```
 
-properties
-# DB
-spring.datasource.url=jdbc:postgresql://db:5432/sto_db
+## Основные настройки в application.properties:
+
+### DB
+spring.datasource.url=jdbc:postgresql://db:5432/cto_db
 spring.datasource.username=user
 spring.datasource.password=password
 
-# Kafka (опционально)
+### Kafka (опционально)
 spring.kafka.bootstrap-servers=kafka:9092
 
-# Redis
+### Redis
 spring.data.redis.host=redis
 spring.cache.type=redis
-API Endpoints
-Заявки
+
+## API Endpoints
+1. Заявки
 POST /api/requests - Создать новую заявку
-
 GET /api/requests/{id} - Получить заявку по ID
-
 PUT /api/requests/{id}/status - Изменить статус заявки
-
 GET /api/requests/client/{phone} - Получить заявки клиента
 
-История статусов
+2. История статусов
 GET /api/requests/{id}/history - Получить историю изменений статуса
 
-Примеры запросов
+### Примеры запросов
 Создание заявки
+```
 bash
 curl -X POST http://localhost:8080/api/requests \
   -H "Content-Type: application/json" \
@@ -84,7 +72,9 @@ curl -X POST http://localhost:8080/api/requests \
     "clientPhone": "+77771234567",
     "problemDescription": "Не работает кондиционер"
   }'
-Изменение статуса
+```
+3. Изменение статуса
+```
 bash
 curl -X PUT http://localhost:8080/api/requests/1/status \
   -H "Content-Type: application/json" \
@@ -93,7 +83,9 @@ curl -X PUT http://localhost:8080/api/requests/1/status \
     "changeReason": "Назначен мастер",
     "changedBy": "Менеджер Петров"
   }'
-Структура проекта
+```
+## Структура проекта
+```
 text
 src/
 ├── main/
@@ -110,40 +102,23 @@ src/
 │   └── resources/
 │       └── application.properties
 ├── test/                     # Тесты
-Тестирование
+```
+## Тестирование
 Запуск тестов:
-
+```
 bash
 mvn test
-Настройка окружения разработки
+```
+
+## Настройка окружения разработки
 Установите плагины для IDE:
 
-Lombok
+1. Lombok
+2. MapStruct
+3. Spring Boot Tools
 
-MapStruct
-
-Spring Boot Tools
-
-Рекомендуемые настройки:
-
-properties
-# В application-dev.properties
-spring.jpa.show-sql=true
-spring.jpa.properties.hibernate.format_sql=true
-logging.level.com.nurtikaga=DEBUG
-Логирование
-Логи хранятся в:
-
-logs/application.log (основной лог)
-
-Консоль Docker при использовании контейнеров
-
-Мониторинг
-Actuator: http://localhost:8080/actuator
-
-Health check: http://localhost:8080/actuator/health
-
-Metrics: http://localhost:8080/actuator/metrics
-
-Лицензия
-MIT License
+## Рекомендуемые настройки:
+### В application-dev.properties
+1. spring.jpa.show-sql=true
+2. spring.jpa.properties.hibernate.format_sql=true
+3. logging.level.com.nurtikaga=DEBUG
