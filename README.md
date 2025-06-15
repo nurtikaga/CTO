@@ -8,7 +8,6 @@
 3. Уведомление клиентов
 4. Интеграция с Kafka для обработки событий
 
-
 Технологический стек:
 1. Java 21
 2. Spring Boot 3.4.2
@@ -18,6 +17,8 @@
 6. Docker
 7. Lombok
 8. MapStruct
+В планах добавить еще Swagger, по причине переезда, не успел доделать.
+
 
 ## Установка и запуск
 1. Сборка проекта
@@ -122,3 +123,5 @@ mvn test
 1. spring.jpa.show-sql=true
 2. spring.jpa.properties.hibernate.format_sql=true
 3. logging.level.com.nurtikaga=DEBUG
+
+По любым вопросам или рекомендациям, ю ар велком, тг: @nrtagd
