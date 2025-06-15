@@ -16,7 +16,8 @@
 5. Redis (кеширование)
 6. Docker
 7. Lombok
-8. MapStruct
+8. MapStruct;
+   
 В планах добавить еще Swagger, по причине переезда, не успел доделать.
 
 
